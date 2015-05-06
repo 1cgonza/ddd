@@ -169,9 +169,10 @@
   Drawing.prototype.redraw = function (loadNewData) {
     loading.style.opacity = 1;
     eqIndex = 0;
+    animate = currentStrokeBtn.classList.contains('play') ? true : false;
 
     this.clearCanvas();
-    animate = currentStrokeBtn.classList.contains('play') ? true : false;
+
     if (loadNewData) {
       eqData.pop();
       requestData();
@@ -181,6 +182,7 @@
   };
 
   Drawing.prototype.updatePosition = function () {
+    // only clear the canvas if it is not animating
     if (!animate) {
       this.clearCanvas();
       this.draw();
@@ -197,10 +199,12 @@
   };
 
   Drawing.prototype.lineAnimation = function () {
-    if (animate && eqIndex < eqData.length) {
+    if (eqIndex < eqData.length) {
       this.defineRenderOption(eqData[eqIndex].utc, eqData[eqIndex].ml);
 
-      window.requestAnimationFrame(this.lineAnimation.bind(this));
+      requestAnimationFrame(this.lineAnimation.bind(this));
+    } else {
+      animate = false;
     }
     eqIndex++;
   };
@@ -335,20 +339,23 @@
   }
 
   function strokesClickEvent (event) {
+    var prevSprite = currentStrokeBtn.dataset.sprite;
+    var newSprite = event.target.dataset.sprite;
+
     resetCurrentClass(currentStrokeBtn, event.target);
-    currentStrokeBtn = event.target;
-    animate = false;
+    updateOptions(sprites[newSprite]);
 
-    updateOptions(sprites[currentStrokeBtn.dataset.sprite]);
-
-    ddd.loadSprite();
+    if (prevSprite !== newSprite) {
+      ddd.loadSprite();
+    }
 
     ddd.redraw(false);
+    currentStrokeBtn = event.target;
   }
 
-  function resetCurrentClass (old, current) {
+  function resetCurrentClass (old, target) {
     old.classList.remove('current');
-    current.classList.add('current');
+    target.classList.add('current');
   }
 
   function updateRadiusText () {

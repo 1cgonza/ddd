@@ -1,3 +1,9 @@
+// CREDITS
+// I did not make this, just translated into JS for learning purposes
+// See original code at http://www.complexification.net/gallery/machines/binaryRing/
+// Binary Ring
+// j.tarbell   March, 2004
+// Albuquerque, New Mexico
 (function () {
   'use strict';
   var loaded    = false;

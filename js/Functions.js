@@ -165,7 +165,6 @@ var Notations = function (data) {
 
 Notations.prototype.imageReady = function (event) {
   this.imageLoaded = true;
-  this.loading.style.opacity = 0;
 };
 
 Notations.prototype.update = function() {

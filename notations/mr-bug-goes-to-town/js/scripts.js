@@ -43,6 +43,7 @@
     v.controls = true;
     v.addEventListener('play', playerLoop, false);
     v.addEventListener('seeking', playerLoop, false);
+    timeline.loading.style.opacity = 0;
   }
 
   function playerLoop (event) {
@@ -67,7 +68,7 @@
       timeline.img,
       0, 0,
       timeline.imgW, timeline.imgH,
-      0, (timeline.canvas.height / 2) - (timeline.height / 2) - 100,
+      0, (timeline.canvas.height / 2) - (timeline.height / 2),
       timeline.width, timeline.height
     );
     timeline.ctx.beginPath();

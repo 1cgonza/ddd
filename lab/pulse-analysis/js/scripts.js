@@ -31,8 +31,17 @@
   requestData('../../data/pulse/heart.2.json', processData);
 
   function processData (data) {
-    data.beats.forEach(newArrayCleanRawData);
+    data.beats.forEach(function (value) {
+      if( value.charAt(0) === 'S' ) {
+        var beatValue = Number( value.substr(1) );
+        rawData.push(beatValue);
+
+        checkMinMax(beatValue, 'raw');
+      }
+    });
+
     arrayChunks();
+    loading.style.opacity = 0;
   }
 
   function printInfo() {
@@ -41,15 +50,6 @@
                       'Beats Count (peaks): ' + peaksCount + ' || ' +
                       'Total Count: ' + rawData.length + '<br/>' +
                       'Unique Beats #: ' + uniqueBeatValues.length;
-  }
-
-  function newArrayCleanRawData (value, index, array) {
-    if( value.charAt(0) === 'S' ) {
-      var beatValue = Number( value.substr(1) );
-      rawData.push(beatValue);
-
-      checkMinMax(beatValue, 'raw');
-    }
   }
 
   function newArrayBeats (value) {
@@ -90,11 +90,10 @@
     if (chunkIndex < rawData.length) {
       var data = rawData.slice(chunkIndex, chunkIndex + chunkW);
       var canvas = document.createElement('canvas');
+      canvas.style.margin = '0 auto';
       container.appendChild(canvas);
       new Drawing(canvas, data);
       requestAnimationFrame(arrayChunks);
-    } else {
-      loading.style.opacity = 0;
     }
     chunkIndex += chunkW;
     printInfo();

@@ -137,23 +137,6 @@
     var key = rawData[i].bpm;
     var thisBeat = beats[key];
     thisBeat.draw();
-    // flip = !flip;
-    // var prevKey = i > 0 ? rawData[i - 1].bpm : rawData[0].bpm;
-    // var key = rawData[i].bpm;
-    // var prev = beatsGrid[prevKey];
-    // var dest = beatsGrid[key];
-    // var push = flip ? key : -key;
-    // var midX = prev.x !== dest.x ? prev.x - ( (prev.x - dest.x) / 2) : prev.x - push;
-    // var midY = prev.y !== dest.y ? prev.y - ( (prev.y - dest.y) / 2) : prev.y - push;
-
-    // if ( prev.x !== dest.x && prev.y !== dest.y ) midY -= push;
-
-    // if (JSON.stringify(prev) !== JSON.stringify(dest) ) {
-    //   grid.ctx.beginPath();
-    //   grid.ctx.moveTo(prev.x, prev.y);
-    //   grid.ctx.quadraticCurveTo( midX, midY, dest.x, dest.y );
-    //   grid.ctx.stroke();
-    // }
   }
 
   function animateTimeline() {

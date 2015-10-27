@@ -11,16 +11,16 @@
   /*==========  CREATE CANVAS  ==========*/
   var canvas = document.createElement('canvas');
   var ctx    = canvas.getContext('2d');
-  var centerX, centerY;
   canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
-  centerX = canvas.width / 2 | 0;
-  centerY = canvas.height / 2 | 0;
+  var centerX = canvas.width / 2 | 0;
+  var centerY = canvas.height / 2 | 0;
 
   /*----------  GLOBAL VARIABLES  ----------*/
   var rawData          = [];
   var uniqueBeatValues = [];
   var chunkIndex       = 0;
+  var count = 0;
   var chunkW           = window.innerWidth - 100;
   var peaksCount       = 0;
   var minMaxValues = {
@@ -31,17 +31,23 @@
   requestData('../../data/pulse/heart.2.json', processData);
 
   function processData (data) {
-    data.beats.forEach(function (value) {
-      if( value.charAt(0) === 'S' ) {
-        var beatValue = Number( value.substr(1) );
-        rawData.push(beatValue);
+    for (var i = 0; i < data.beats.length; i++) {
+      var point = data.beats[i];
+      var value = Number( point.substr(1) );
 
-        checkMinMax(beatValue, 'raw');
+      if( point.charAt(0) === 'S' ) {
+        rawData[count] = {raw: value};
+
+        checkMinMax(value, 'raw');
+        count++;
       }
-    });
+      else if (point.charAt(0) === 'B') {
+        var preVal = rawData[count - 1];
+        rawData[count - 1].bpm = value;
+      }
+    }
 
     arrayChunks();
-    loading.style.opacity = 0;
   }
 
   function printInfo() {
@@ -94,6 +100,8 @@
       container.appendChild(canvas);
       new Drawing(canvas, data);
       requestAnimationFrame(arrayChunks);
+    } else {
+      loading.style.opacity = 0;
     }
     chunkIndex += chunkW;
     printInfo();
@@ -130,17 +138,26 @@
       // add .5 pixels to correct the canvas line rendering.
       var x = i * this.gap + 0.5;
 
-      if ( this.data[i] > this.data[i - 1] ) {
+      if ( this.data[i].hasOwnProperty('bpm') ) {
+        this.ctx.beginPath();
+        this.ctx.moveTo(x, this.canvas.height);
+        this.ctx.strokeStyle = 'deeppink';
+        this.ctx.lineTo(x, this.canvas.height + minMaxValues.raw.min - this.data[i].raw - (this.data[i].bpm * 0.5) );
+        this.ctx.strokeText( this.data[i].bpm + ', ' + this.data[i].raw, x - 5, this.canvas.height + minMaxValues.raw.min - this.data[i].raw - (this.data[i].bpm * 0.5) );
+        this.ctx.stroke();
+      }
+
+      if ( i > 0 && this.data[i].raw > this.data[i - 1].raw ) {
         this.dataUpCounter++;
       }
 
-      if ( this.dataUpCounter > 3 && this.data[i] > this.data[i + 1] && this.data[i] >= this.data[i -1] && this.sampleSum(i) > 10 && this.data[i] >= 518) {
+      if ( this.dataUpCounter > 3 && this.data[i].raw >= this.data[i - 1].raw && this.sampleSum(i) > 10 && this.data[i].raw >= 518) {
         this.dataUpCounter = 0;
 
         this.ctx.beginPath();
         this.ctx.moveTo( x, this.canvas.height );
-        this.ctx.lineTo( x, this.canvas.height + minMaxValues.raw.min - this.data[i] );
-        this.ctx.strokeStyle = 'red';
+        this.ctx.lineTo( x, this.canvas.height + minMaxValues.raw.min - this.data[i].raw );
+        this.ctx.strokeStyle = 'crimson';
         this.ctx.stroke();
         this.printText(x, i);
         // this.ctx.strokeText( this.data[i], x - 5, this.canvas.height + minMaxValues.raw.min - this.data[i] - 3 );
@@ -150,19 +167,19 @@
         this.timeBtwnBeats = 0;
         this.lastBeat = x;
 
-        newArrayBeats(this.data[i]);
+        newArrayBeats(this.data[i].raw);
 
       } else {
         this.timeBtwnBeats++;
         this.ctx.beginPath();
         this.ctx.moveTo( x, this.canvas.height );
-        this.ctx.lineTo( x, this.canvas.height + minMaxValues.raw.min - this.data[i] );
+        this.ctx.lineTo( x, this.canvas.height + minMaxValues.raw.min - this.data[i].raw );
 
-        if (this.data[i] < 490) {
+        if (this.data[i].raw < 490) {
           this.ctx.strokeStyle = 'blue';
           this.printText(x, i);
 
-        } else if (this.data[i] === 518) {
+        } else if (this.data[i].raw === 518) {
           this.ctx.strokeStyle = '#a16ccb';
           this.printText(x, i);
         }
@@ -183,21 +200,22 @@
   }
 
   Drawing.prototype.printText = function (x, i) {
-    this.ctx.strokeText( this.data[i], x - 5, this.canvas.height + minMaxValues.raw.min - this.data[i] - 3 );
+    this.ctx.strokeText( this.data[i].raw, x - 5, this.canvas.height + minMaxValues.raw.min - this.data[i].raw - 3 );
   };
 
   Drawing.prototype.sampleSum = function(i) {
     var sum = 0;
     var sample = 15;
 
-    if ( this.data[i] > this.data[i + 1] ) {
-      if (this.data.length > sample) {
+    if ( i < this.data.length - 1 && this.data[i].raw > this.data[i + 1].raw ) {
+      if (this.data.length > sample && i > sample) {
         for (var j = 0; j < sample; j++) {
-          sum += this.data[i - j] - this.data[i - j - 1];
+
+          sum += this.data[i - j].raw - this.data[i - j - 1].raw;
         }
-      } else {
+      } else if (i > sample) {
         for (var n = 0; n < this.data.length; n++) {
-          sum += this.data[i - n] - this.data[i - n - 1];
+          sum += this.data[i - n].raw - this.data[i - n - 1].raw;
         }
       }
     }

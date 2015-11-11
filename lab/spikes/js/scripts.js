@@ -161,8 +161,6 @@
   =            SLIDERS            =
   ===============================*/
   function radiusSlider () {
-    var label = 'Radius: ' + options.radius + 'px';
-
     if (!$('#slider-radius').length) {
       $container.append('<div id="slider-radius"><span class="slider-values"></span></div>');
     }
@@ -176,17 +174,15 @@
       value: options.radius,
       slide: function (event, ui) {
         options.radius = ui.value;
-        $('#slider-radius .slider-values').text(label);
+        $('#slider-radius .slider-values').text('Radius: ' + options.radius + 'px');
         eqNodeTransform();
         taNodeTransform();
       }
     });
-    $('#slider-radius .slider-values').text(label);
+    $('#slider-radius .slider-values').text('Radius: ' + options.radius + 'px');
   }
 
   function magnitudeSlider () {
-    var label = options.rangeStart + ' - ' + options.rangeEnd + ' Ml';
-
     if (!$('#slider-magnitude').length) {
       $container.append('<div id="slider-magnitude"><span class="slider-values"></span></div>');
     }
@@ -202,16 +198,14 @@
       slide: function (event, ui) {
         options.rangeStart = ui.values[0];
         options.rangeEnd = ui.values[1];
-        $('#slider-magnitude .slider-values').text(label);
+        $('#slider-magnitude .slider-values').text(options.rangeStart + ' - ' + options.rangeEnd + ' Ml');
         eqNodeChangeRange();
       }
     });
-    $('#slider-magnitude .slider-values').text(label);
+    $('#slider-magnitude .slider-values').text(options.rangeStart + ' - ' + options.rangeEnd + ' Ml');
   }
 
   function opacitySlider () {
-    var label = 'Opacity: ' + options.opacity;
-
     if (!$('#slider-opacity').length) {
       $container.append('<div id="slider-opacity"><span class="slider-values"></span></div>');
     }
@@ -226,17 +220,15 @@
       value: options.opacity,
       slide: function (event, ui) {
         options.opacity = ui.value;
-        $('#slider-opacity .slider-values').text(label);
+        $('#slider-opacity .slider-values').text('Opacity: ' + options.opacity);
         eqNodeOpacity(options.opacity);
         taNodeOpacity(options.opacity);
       }
     });
-    $('#slider-opacity .slider-values').text(label);
+    $('#slider-opacity .slider-values').text('Opacity: ' + options.opacity);
   }
 
   function logScaleSliders () {
-    var label = 'Pow: ' + options.powOf;
-
     if (!$('#slider-powof').length) {
       $container.append('<div id="slider-powof"><span class="slider-values"></span></div>');
     }
@@ -250,16 +242,14 @@
       value: options.powOf,
       slide: function (event, ui) {
         options.powOf = ui.value;
-        $('#slider-powof .slider-values').text(label);
+        $('#slider-powof .slider-values').text('Pow: ' + options.powOf);
         eqNodeDraw();
       }
     });
-    $('#slider-powof .slider-values').text(label);
+    $('#slider-powof .slider-values').text('Pow: ' + options.powOf);
   }
 
   function dividedbySliders () {
-    var label = '/ by: ' + options.dividedBy;
-
     if (!$('#slider-dividedby').length) {
       $container.append('<div id="slider-dividedby"><span class="slider-values"></span></div>');
     }
@@ -273,11 +263,11 @@
       value: options.dividedBy,
       slide: function (event, ui) {
         options.dividedBy = ui.value;
-        $('#slider-dividedby .slider-values').text(label);
+        $('#slider-dividedby .slider-values').text('/ by: ' + options.dividedBy);
         eqNodeDraw();
       }
     });
-    $('#slider-dividedby .slider-values').text(label);
+    $('#slider-dividedby .slider-values').text('/ by: ' + options.dividedBy);
   }
 
   /*-----  End of SLIDERS  ------*/

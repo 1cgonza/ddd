@@ -69,24 +69,13 @@
   }
 
   function defineTaData (data) {
-    // Build an array of objects for every year available. Set intensity at 0 first.
-    for( var i = yearsStart; i < yearsEnd + 1; i++) {
-      years.push( { year: i, intensity: 0} );
+    if ( data.hasOwnProperty(options.year) ) {
+      taData = data[options.year];
     }
-    //
-    for( var j = 0; j < data.length; j++ ) {
-      dateAttack = new Date( data[j].date );
-      yearAttack = dateAttack.getFullYear();
-      //
-      for ( var ii = 0; ii < years.length; ii++ ) {
-        if ( yearAttack === yearsStart + ii ) {
-          years[ii].intensity = years[ii].intensity + 1;
-        }
-      }
-      // Get only the data of the attacks for the selected year. This way we can create the right ammount of nodes in d3 by simply using "selectAll".
-      if ( yearAttack === Number(options.year) ) {
-        taData.push( data[j] );
-      }
+    // Build an array of objects for every year available.
+    for( var i = yearsStart; i < yearsEnd + 1; i++) {
+      var intensity = data.hasOwnProperty(i) ? data[i].length : 0;
+      years.push( { year: i, intensity: intensity} );
     }
 
     d3.select('#ddd-loading').transition().style('opacity', '0');
@@ -329,11 +318,10 @@
 
   function eqNodeTransform() {
     eqNode.attr('transform', function (d) {
-      eventDate = d.utc * 0.001;
+      eventDate = d.utc;
       dReset = eventDate - (Date.parse(options.year) * 0.001);
 
       rot = dReset * secondsW;
-
       //Now that the eqNode are rendered, first translate all together, then rotate using 3 param: degrees, x axis and y. The y amount gives us the radius of the circle.
       // return 'translate(' + (screenWidth/2 - options.nodeWidth/2) + ',' + (screenHeight/2 - options.radius) + ') rotate(' + i*(360 / dataLength) + ',' + options.nodeWidth/2 + ',' + options.radius +')';
       return 'translate(' + (screenWidth/2 - options.nodeWidth/2) + ',' + (screenHeight/2 - options.radius) + ') rotate(' + rot + ',' + options.nodeWidth/2 + ',' + options.radius +')';
@@ -388,8 +376,8 @@
       yearLength = (Date.parse(yearEnd) - Date.parse(options.year)) * 0.001;
       secondsW = 360 / yearLength;
 
-      eventDate = Date.parse(d.date) * 0.001;
-      dReset = eventDate - (Date.parse(options.year)*0.001);
+      eventDate = d.date.unix;
+      dReset = eventDate - (Date.parse(options.year) * 0.001);
 
       rot = dReset * secondsW;
 
@@ -405,7 +393,7 @@
       thisPoly = thisNode.select('polygon');
       infoBox = d3.select('#info');
 
-      if (d.date    !== '') { infoBox.append('p').text('Fecha: ' + d.date); }
+      if (d.date    !== '') { infoBox.append('p').text('Fecha: ' + d.date.human); }
       if (d.by      !== '') { infoBox.append('p').text('Quien: ' + d.by); }
       if (d.dep     !== '') { infoBox.append('p').text('Departamento: ' + d.dep); }
       if (d.mun     !== '') { infoBox.append('p').text('Municipio: ' + d.mun); }

@@ -90,10 +90,10 @@
       "eng": "Man in uniform"
     },
     {
-      "note": "This is swapped in order with the next",
       "num": 17,
       "label": "Podpity męzczyzna",
-      "eng": "Drunk man"
+      "eng": "Drunk man",
+      "_note": "This is swapped in order with the next"
     },
     {
       "num": 16,
@@ -299,9 +299,9 @@
     },
     {
       "description": "Kid 34",
-      "note": "the seconds count in the top row has a mistake. If I continue accounting for 1 second every 5 square/ half grid, then the value is over 414 seconds and not 450 as noted (zbig crosses the value 450 but never corrects the count from here after)",
       "start": 409.599996,
-      "x": 13206
+      "x": 13206,
+      "_note": "the seconds count in the top row has a mistake. If I continue accounting for 1 second every 5 square/ half grid, then the value is over 414 seconds and not 450 as noted (zbig crosses the value 450 but never corrects the count from here after)"
     },
     {
       "description": "Kid 35",

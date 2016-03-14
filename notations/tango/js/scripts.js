@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-
+console.log('tick')
   var animReq;
   var data        = {};
   var sectionsLen = 0;
@@ -66,6 +66,17 @@
   left.style.top    = header.offsetHeight + 'px';
 
   function checkAssetsLoaded() {
+    function stopDrag() {
+      dragging = false;
+      return false;
+    }
+
+    function updateAll() {
+      if (video.paused) {
+        updateNotations();
+      }
+    }
+
     if (assetsLoaded < assetsLength) {
       requestAnimationFrame(checkAssetsLoaded);
     } else {
@@ -127,17 +138,6 @@
         }
         return false;
       };
-
-      function stopDrag() {
-        dragging = false;
-        return false;
-      }
-
-      function updateAll() {
-        if (video.paused) {
-          updateNotations();
-        }
-      }
     }
   }
 

@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-console.log('tick')
+
   var animReq;
   var data        = {};
   var sectionsLen = 0;

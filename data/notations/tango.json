@@ -11,119 +11,179 @@
   "imgH": 800,
   "initX": 553,
   "endX": 15381,
-  "characters": [
+  "labels": [
     {
-      "num": 1,
+      "label": "Napisy Początkowe",
+      "eng": "Initial Credits",
+      "x": 553, "y": 68, "w": 530, "h": 732,
+      "class": "white"
+    },
+    {
+      "character": 1,
       "label": "Chłopiec z piłka",
       "eng": "Boy with ball",
-      "x1": 1083, "y1": 90, "x2": 14310, "y2": 117
+      "x": 1083, "y": 68, "w": 13227, "h": 41,
+      "class": "black"
     },
     {
-      "num": 2,
+      "character": 2,
       "label": "Karmiąca matka",
       "eng": "Nursing mother",
-      "x1": 1808, "y1": 128, "x2": 13396, "y2": 136
+      "x": 1808, "y": 109, "w": 11588, "h": 30,
+      "class": "red"
     },
     {
-      "num": 3,
+      "character": 3,
       "label": "Niemowlę",
-      "eng": "Baby"
+      "eng": "Baby",
+      "x": 1808, "y": 139, "w": 11462, "h": 30,
+      "class": "red"
     },
     {
-      "num": 4,
+      "character": 4,
       "label": "Złodziej",
-      "eng": "Thief"
+      "eng": "Thief",
+      "x": 2460, "y": 172, "w": 11030, "h": 31,
+      "class": "black"
     },
     {
-      "num": 5,
+      "character": 5,
       "label": "Pan z paczka",
-      "eng": "Man with parcel"
+      "eng": "Man with parcel",
+      "x": 2946, "y": 203, "w": 10480, "h": 28,
+      "class": "red"
     },
     {
-      "num": 6,
+      "character": 6,
       "label": "Dziewczyna robi lekcji",
-      "eng": "Girl doing homework"
+      "eng": "Girl doing homework",
+      "x": 3627, "y": 231, "w": 9925, "h": 30,
+      "class": "black"
     },
     {
-      "num": 7,
+      "character": 7,
       "label": "Kobieta niesie zupe",
-      "eng": "Woman brings soup"
+      "eng": "Woman brings soup",
+      "x": 4131, "y": 261, "w": 9201, "h": 40,
+      "class": "red"
     },
     {
-      "num": 8,
+      "character": 8,
       "label": "Męzczyzna je zupe",
-      "eng": "Man eating soup"
+      "eng": "Man eating soup",
+      "x": 4315, "y": 301, "w": 9206, "h": 34,
+      "class": "black"
     },
     {
-      "num": 9,
+      "character": 9,
       "label": "Młodzieniec gimnastykuje się",
-      "eng": "Young man doing gymnastic exercise"
+      "eng": "Young man doing gymnastic exercise",
+      "x": 5015, "y": 335, "w": 8287, "h": 35,
+      "class": "red"
     },
     {
-      "num": 10,
+      "character": 10,
       "label": "Pani z zakupami",
-      "eng": "Lady with shopping bags"
+      "eng": "Lady with shopping bags",
+      "x": 5568, "y": 370, "w": 7734, "h": 30,
+      "class": "black"
     },
     {
-      "num": 11,
+      "character": 11,
       "label": "Upadek, pan zmienia żarówkę",
-      "eng": "Fall, man changing light bulb"
+      "eng": "Fall, man changing light bulb",
+      "x": 6056, "y": 400, "w": 7182, "h": 34,
+      "class": "red"
     },
     {
-      "num": 12,
+      "character": 12,
       "label": "Pani czyści rybę",
-      "eng": "Woman cleaning fish"
+      "eng": "Woman cleaning fish",
+      "x": 6495, "y": 434, "w": 7185, "h": 32,
+      "class": "black"
     },
     {
-      "num": 13,
+      "character": 13,
       "label": "Dziewczyna robi toalete",
-      "eng": "Young woman in grooming herself"
+      "eng": "Young woman grooming herself",
+      "x": 7070, "y": 466, "w": 6643, "h": 34,
+      "class": "red"
     },
     {
-      "num": 14,
+      "character": 14,
       "label": "Pan wynosi śmiecie",
-      "eng": "Man taking out rubbish"
+      "eng": "Man taking out rubbish",
+      "x": 7721, "y": 500, "w": 5517, "h": 31,
+      "class": "black"
     },
     {
-      "num": 15,
+      "character": 15,
       "label": "Mundurowy",
-      "eng": "Man in uniform"
+      "eng": "Man in uniform",
+      "x": 8268, "y": 531, "w": 5528, "h": 28,
+      "class": "red"
     },
     {
-      "num": 17,
+      "character": 17,
       "label": "Podpity męzczyzna",
       "eng": "Drunk man",
-      "_note": "This is swapped in order with the next"
+      "_note": "This is swapped in order with the next",
+      "x": 9064, "y": 587, "w": 4424, "h": 28,
+      "class": "red"
     },
     {
-      "num": 16,
+      "character": 16,
       "label": "Pani sprząta",
-      "eng": "Lady cleaning"
+      "eng": "Lady cleaning",
+      "x": 9340, "y": 559, "w": 4435, "h": 28,
+      "class": "black"
     },
     {
-      "num": 18,
+      "character": 18,
       "label": "Pan (goście)",
-      "eng": "Man (guests)"
+      "eng": "Man (guests)",
+      "x": 9742, "y": 615, "w": 4419, "h": 38,
+      "class": "black"
     },
     {
-      "num": 19,
+      "character": 19,
       "label": "Pani (goście)",
-      "eng": "Woman (guests)"
+      "eng": "Woman (guests)",
+      "x": 9742, "y": 653, "w": 4419, "h": 31,
+      "class": "black"
     },
     {
-      "num": 20,
+      "character": 20,
       "label": "Chłopak (Całująca się para)",
-      "eng": "Boy (Kissing couple)"
+      "eng": "Boy (Kissing couple)",
+      "x": 10285, "y": 684, "w": 3331, "h": 37,
+      "class": "red"
     },
     {
-      "num": 21,
+      "character": 21,
       "label": "Dziewczyna (Całująca się para)",
-      "eng": "Girl (Kissing couple)"
+      "eng": "Girl (Kissing couple)",
+      "x": 10285, "y": 721, "w": 3236, "h": 32,
+      "class": "red"
     },
     {
-      "num": 22,
+      "character": 22,
       "label": "Matka przewijająca niemowlę",
-      "eng": "Mother swaddling baby"
+      "eng": "Mother swaddling baby",
+      "x": 11220, "y": 753, "w": 2206, "h": 47,
+      "class": "black"
+    },
+    {
+      "label": "Piłka leży sama",
+      "eng": "Ball lies alone",
+      "x": 14310, "y": 68, "w": 370, "h": 75,
+      "class": "red"
+    },
+    {
+      "label": "Napisy końcowe",
+      "eng": "End credits",
+      "x": 14962, "y": 68, "w": 419, "h": 732,
+      "class": "white"
     }
   ],
   "sections": [
@@ -235,7 +295,7 @@
     {
       "description": "Kid 21",
       "start": 253.753593,
-      "x": 8426
+      "x": 8423
     },
     {
       "description": "Kid 22",
@@ -306,19 +366,15 @@
     {
       "description": "Kid 35",
       "start": 421.899991,
-      "x": 13586
+      "x": 13585
     },
     {
       "description": "Kid 36",
-      "polish": "chłopiec z piłka",
-      "english": "boy with ball",
       "start": 433.766693,
       "x": 13941
     },
     {
       "description": "Kid 37. This time, the kid does not come in for the ball.",
-      "polish": "Piłka leży sama",
-      "english": "ball lies alone",
       "start": 445.862092,
       "x": 14310
     },
@@ -329,8 +385,6 @@
     },
     {
       "description": "End credits",
-      "polish": "napisy końcowe",
-      "english": "closing credits",
       "start": 471.470989,
       "x": 14962
     }

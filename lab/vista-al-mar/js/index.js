@@ -4,8 +4,6 @@ import Map from './Map';
 import Audio from './Audio';
 import Menu from './Menu';
 
-// var menu = new Menu();
-
 /*----------  SET STAGE  ----------*/
 var container = document.getElementById('ddd-container');
 var animReq;

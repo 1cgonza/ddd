@@ -405,7 +405,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var Audio = function Audio() {
-  this.audio = new DDD.Audio({ mar: '/videos/mar.mp3' }, function (audios) {
+  this.audio = new DDD.Audio({ mar: 'http://juancgonzalez.com/dddrwings/audio/mar.mp3' }, function (audios) {
     this.loaded(audios);
   }.bind(this));
   this.playing = true;

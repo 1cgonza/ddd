@@ -1,5 +1,5 @@
 var Audio = function() {
-  this.audio = new DDD.Audio({mar: 'http://juancgonzalez.com/dddrwings/audio/mar.mp3'}, function(audios) {
+  this.audio = new DDD.Audio({mar: 'http://juancgonzalez.com/dddrawings/audio/mar.mp3'}, function(audios) {
     this.loaded(audios);
   }.bind(this));
   this.playing = true;
